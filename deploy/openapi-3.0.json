@@ -1,0 +1,213 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "NovaFabric Flaky Detective",
+    "description": "Classify an AI-agent test run as pass / flaky / regression by diffing NovaFabric capsules.",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Health Health Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fixtures": {
+      "get": {
+        "summary": "Fixtures",
+        "description": "List the built-in demo aliases usable as capsule paths.",
+        "operationId": "fixtures_fixtures_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Fixtures Fixtures Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/analyze": {
+      "post": {
+        "summary": "Analyze Runs",
+        "operationId": "analyze_runs_analyze_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnalyzeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyzeResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AnalyzeRequest": {
+        "properties": {
+          "baseline_capsule": {
+            "type": "string",
+            "title": "Baseline Capsule",
+            "description": "Baseline capsule dir path, or a 'fixture:<name>' alias."
+          },
+          "current_capsule": {
+            "type": "string",
+            "title": "Current Capsule",
+            "description": "Current run's capsule dir path, or a 'fixture:<name>' alias."
+          }
+        },
+        "type": "object",
+        "required": [
+          "baseline_capsule",
+          "current_capsule"
+        ],
+        "title": "AnalyzeRequest"
+      },
+      "AnalyzeResponse": {
+        "properties": {
+          "verdict": {
+            "type": "string",
+            "title": "Verdict"
+          },
+          "confidence": {
+            "type": "number",
+            "title": "Confidence"
+          },
+          "differing_step": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Differing Step"
+          },
+          "remediation": {
+            "type": "string",
+            "title": "Remediation"
+          },
+          "signal": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Signal"
+          }
+        },
+        "type": "object",
+        "required": [
+          "verdict",
+          "confidence",
+          "differing_step",
+          "remediation",
+          "signal"
+        ],
+        "title": "AnalyzeResponse"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://flaky-detective.onrender.com",
+      "description": "Flaky Detective API (live on Render, Frankfurt EU)"
+    }
+  ]
+}

@@ -1,0 +1,417 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - button "Skip to main content" [ref=e491] [cursor=pointer]
+      - navigation "App bar" [ref=e492]:
+        - generic "App launcher" [ref=e493]:
+          - button "Product launcher" [ref=e494] [cursor=pointer]:
+            - generic "App launcher" [ref=e495]:
+              - img "App launcher" [ref=e496]:
+                - img [ref=e16]
+        - generic [ref=e18]:
+          - button "UiPath Studio logo. Clicking here goes to Studio home" [ref=e497] [cursor=pointer]:
+            - img "UiPath Studio logo. Clicking here goes to Studio home" [ref=e498]
+            - generic [ref=e30]: Studio
+          - generic [ref=e499]:
+            - generic [ref=e505]:
+              - generic [ref=e508]: Solution 2
+              - img [ref=e509]: chevron_right
+              - generic [ref=e1026]: Agent
+            - generic [ref=e1334]:
+              - generic [ref=e1336]: cloud
+              - text: Saved
+          - navigation "Section navigation" [ref=e514]:
+            - link "Build" [ref=e515] [cursor=pointer]:
+              - /url: /novafabricagenthack/studio_/designer/c4d004df-1422-4ed6-87c5-b83d33951159?solutionId=2414bd3b-8bab-48b8-e47a-08ded1e3ee41
+            - link "Manage" [ref=e516] [cursor=pointer]:
+              - /url: /novafabricagenthack/studio_/designer/c4d004df-1422-4ed6-87c5-b83d33951159/deploy/package-details?solutionId=2414bd3b-8bab-48b8-e47a-08ded1e3ee41
+        - generic [ref=e31]:
+          - generic [ref=e32]:
+            - button "Feedback" [ref=e517] [cursor=pointer]:
+              - img [ref=e34]: rate_review_icon
+            - button [ref=e38] [cursor=pointer]:
+              - img [ref=e39]:
+                - img [ref=e40]
+          - generic "Help" [ref=e518] [cursor=pointer]:
+            - button "Help" [ref=e519]:
+              - generic [ref=e55]: help_outline
+          - generic [ref=e58]:
+            - generic "Notifications 1" [ref=e520]:
+              - button "Notifications 1" [ref=e521] [cursor=pointer]:
+                - generic [ref=e63]: notifications
+            - generic: "1"
+          - button "mohsen seyedkazemi ardebili" [ref=e522]:
+            - img "mohsen seyedkazemi ardebili" [ref=e523] [cursor=pointer]:
+              - generic [ref=e70]: ma
+      - generic [ref=e71]:
+        - generic:
+          - generic:
+            - dialog "upgrade-trial-dialog-title":
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic: Evaluation agreement
+        - generic:
+          - generic:
+            - dialog "upgrade-trial-dialog-title"
+        - generic [ref=e524]:
+          - generic [ref=e525]:
+            - link "Go to projects" [ref=e526] [cursor=pointer]:
+              - /url: /novafabricagenthack/studio_/projects
+              - img [ref=e527]:
+                - img [ref=e528]
+            - separator [ref=e532]
+            - button "Undo" [disabled] [ref=e533]:
+              - img [ref=e534]: undo
+            - button "Redo" [disabled] [ref=e537]:
+              - img [ref=e538]: redo
+            - separator [ref=e541]
+            - tablist [ref=e542]:
+              - generic [ref=e545]:
+                - button "Debug" [ref=e546]:
+                  - img [ref=e547]: play_arrow
+                  - generic [ref=e549]: Debug
+                - button "Debug environment" [ref=e553]:
+                  - img [ref=e554]: arrow_drop_down
+                - button "Debug step-by-step" [ref=e557]:
+                  - img [ref=e558]: play_arrow
+                  - generic [ref=e559]: Debug step-by-step
+                - generic [ref=e563]:
+                  - button "Publish" [ref=e564]:
+                    - img [ref=e565]:
+                      - img [ref=e566]
+                    - generic [ref=e568]: Publish
+                  - button [ref=e571]:
+                    - img [ref=e572]: arrow_drop_down
+                - separator
+                - button "Submit as template" [ref=e575]:
+                  - img [ref=e576]:
+                    - img [ref=e577]
+                  - generic [ref=e580]: Submit as template
+            - separator [ref=e583]
+            - button "Share" [ref=e584]:
+              - img [ref=e585]: share
+              - generic [ref=e586]: Share
+            - tabpanel
+          - separator [ref=e589]
+          - generic [ref=e590]:
+            - generic [ref=e591]:
+              - button "Close project explorer" [ref=e592] [cursor=pointer]:
+                - img [ref=e593]:
+                  - img [ref=e594]
+              - button "Open data manager" [ref=e599] [cursor=pointer]:
+                - img [ref=e600]:
+                  - img [ref=e601]
+              - button "Open issues panel" [ref=e607] [cursor=pointer]:
+                - img [ref=e608]: bug_report
+              - button "Open version control" [ref=e611] [cursor=pointer]:
+                - img [ref=e612]:
+                  - img [ref=e613]
+              - button "Open deployment configuration" [ref=e617] [cursor=pointer]:
+                - img [ref=e618]:
+                  - img [ref=e619]
+            - separator [ref=e624]
+            - generic [ref=e625]:
+              - generic [ref=e627]:
+                - generic [ref=e628]:
+                  - heading "Explorer" [level=2] [ref=e629]
+                  - generic [ref=e630]:
+                    - button "Show Files" [ref=e631] [cursor=pointer]:
+                      - img [ref=e632]: folder
+                    - button "Add to solution" [ref=e635] [cursor=pointer]:
+                      - img [ref=e636]: add
+                    - button "Search" [ref=e639] [cursor=pointer]:
+                      - img [ref=e640]: search
+                - separator [ref=e643]
+                - generic [ref=e644]:
+                  - tree [ref=e649]:
+                    - treeitem "Solution Solution 2" [expanded] [ref=e652] [cursor=pointer]:
+                      - button "Solution Solution 2" [expanded] [ref=e655]:
+                        - generic [ref=e947]:
+                          - img [ref=e949]:
+                            - img [ref=e950]
+                          - generic [ref=e953]: Solution
+                          - generic [ref=e955]: Solution 2
+                      - group [ref=e671]:
+                        - treeitem "Toggle Project Agent" [expanded] [ref=e673]:
+                          - button "Toggle Project Agent" [expanded] [ref=e676]:
+                            - button "Toggle" [ref=e677]:
+                              - img [ref=e679]: keyboard_arrow_down
+                            - generic [ref=e683]:
+                              - img [ref=e685]
+                              - generic [ref=e689]: Project
+                              - generic [ref=e691]: Agent
+                          - group [ref=e693]:
+                            - treeitem "Definition" [ref=e695]:
+                              - button "Definition" [ref=e699]
+                            - treeitem "Evaluation Sets" [ref=e712]:
+                              - button "Evaluation Sets" [ref=e715]
+                            - treeitem "Evaluators" [ref=e727]:
+                              - button "Evaluators" [ref=e730]
+                  - tree [ref=e747]:
+                    - generic [ref=e748]:
+                      - treeitem "Apps" [ref=e750]:
+                        - button "Apps" [ref=e753]:
+                          - generic [ref=e756]:
+                            - img [ref=e758]:
+                              - img [ref=e759]
+                            - generic [ref=e763]: Apps
+                      - treeitem "Assets" [ref=e765]:
+                        - button "Assets" [ref=e768]:
+                          - generic [ref=e771]:
+                            - img [ref=e773]:
+                              - img [ref=e774]
+                            - generic [ref=e778]: Assets
+                      - treeitem "Connections" [ref=e780]:
+                        - button "Connections" [ref=e783]:
+                          - generic [ref=e786]:
+                            - img [ref=e788]:
+                              - img [ref=e789]
+                            - generic [ref=e794]: Connections
+                      - treeitem "Indexes" [ref=e796]:
+                        - button "Indexes" [ref=e799]:
+                          - generic [ref=e802]:
+                            - img [ref=e804]:
+                              - img [ref=e805]
+                            - generic [ref=e809]: Indexes
+                      - treeitem "Toggle Processes" [ref=e811]:
+                        - button "Toggle Processes" [ref=e814]:
+                          - button "Toggle" [ref=e815] [cursor=pointer]:
+                            - img [ref=e817]: keyboard_arrow_right
+                          - generic [ref=e821]:
+                            - img [ref=e823]:
+                              - img [ref=e824]
+                            - generic [ref=e828]: Processes
+                      - treeitem "Queues" [ref=e830]:
+                        - button "Queues" [ref=e833]:
+                          - generic [ref=e836]:
+                            - img [ref=e838]:
+                              - img [ref=e839]
+                            - generic [ref=e843]: Queues
+                      - treeitem "Storage buckets" [ref=e845]:
+                        - button "Storage buckets" [ref=e848]:
+                          - generic [ref=e851]:
+                            - img [ref=e853]:
+                              - img [ref=e854]
+                            - generic [ref=e858]: Storage buckets
+                      - treeitem "Task catalogs" [ref=e860]:
+                        - button "Task catalogs" [ref=e863]:
+                          - generic [ref=e866]:
+                            - img [ref=e868]:
+                              - img [ref=e869]
+                            - generic [ref=e873]: Task catalogs
+                  - separator [ref=e875]:
+                    - generic [ref=e876]:
+                      - separator [ref=e877]
+                      - generic [ref=e878]:
+                        - generic [ref=e879]:
+                          - img [ref=e880]:
+                            - img [ref=e881]
+                          - generic [ref=e883]: Defined resources
+                        - button "Collapse" [ref=e884] [cursor=pointer]:
+                          - img [ref=e885]: keyboard_arrow_down
+              - generic [ref=e890]:
+                - button "Definition" [ref=e1375] [cursor=pointer]:
+                  - img [ref=e1377]:
+                    - img [ref=e1378]
+                  - generic [ref=e1382]: Definition Definition
+                - generic [ref=e905]:
+                  - generic [ref=e1035]:
+                    - generic [ref=e1037]:
+                      - generic:
+                        - generic [ref=e1040] [cursor=pointer]:
+                          - generic [ref=e1042]:
+                            - generic [ref=e1043]: "Score:"
+                            - generic [ref=e1044]: NA
+                          - generic [ref=e1045]:
+                            - img [ref=e1046]:
+                              - img [ref=e1047]
+                            - generic [ref=e1049]: 0%
+                        - group [ref=e1052]:
+                          - button "Canvas" [pressed] [ref=e1053] [cursor=pointer]:
+                            - generic [ref=e1055]: Canvas
+                          - button "Form" [ref=e1056] [cursor=pointer]:
+                            - generic [ref=e1058]: Form
+                      - generic [ref=e1060]:
+                        - status [ref=e1061]
+                        - application [ref=e1064]:
+                          - generic [ref=e1066]:
+                            - generic:
+                              - generic
+                          - img
+                          - generic:
+                            - generic:
+                              - generic: Hold Space and drag to pan around the canvas
+                          - generic [ref=e1086]:
+                            - button "Organize" [ref=e1087] [cursor=pointer]:
+                              - img
+                            - button "Zoom in" [ref=e1088] [cursor=pointer]:
+                              - img
+                            - button "Zoom out" [ref=e1089] [cursor=pointer]:
+                              - img
+                            - button "Zoom to fit" [ref=e1090] [cursor=pointer]:
+                              - img
+                          - button "Add note" [ref=e1094] [cursor=pointer]:
+                            - img [ref=e1095]
+                    - generic [ref=e1102]:
+                      - generic [ref=e1103]:
+                        - button "Execution Trail" [ref=e1104] [cursor=pointer]
+                        - status [ref=e1105]
+                        - button "History" [pressed] [ref=e1106] [cursor=pointer]
+                        - status [ref=e1107]
+                        - button "Evaluations" [ref=e1108] [cursor=pointer]
+                        - status [ref=e1109]
+                      - button "Expand panel" [ref=e1111] [cursor=pointer]:
+                        - img [ref=e1112]
+                  - generic: Connected to Agent
+                  - generic: "Agent Settings. Read-only preview. Model: gpt-5.4-2026-03-05-community-agents. System prompt: You are Flaky Detective, an agentic software-testing assistant. Your job is to decide whether a failing or inconsistent AI-agent test run is a real re…. User prompt: Compare fixture:baseline against fixture:flaky.. Temperature: 0. Max tokens: 65535. Max iterations: 25"
+              - generic [ref=e1119]:
+                - generic [ref=e1120]:
+                  - img [ref=e1121]
+                  - heading "Agent (Autonomous Agent)" [level=2] [ref=e1123]:
+                    - generic [ref=e1124]:
+                      - generic [ref=e1125]: Agent
+                      - generic [ref=e1126]: (Autonomous Agent)
+                - generic [ref=e1128]:
+                  - generic [ref=e1131]:
+                    - paragraph [ref=e1132]: Model *
+                    - generic [ref=e1133]:
+                      - combobox "Select model" [ref=e1134] [cursor=pointer]:
+                        - generic [ref=e1135]:
+                          - paragraph [ref=e1136]: gpt-5.4-2026-03-05
+                          - generic [ref=e1138]: Suggested
+                      - textbox: "gpt-5.4-2026-03-05-community-agents:"
+                      - img
+                      - group
+                  - generic [ref=e1139]:
+                    - generic [ref=e1140]:
+                      - generic [ref=e1142]:
+                        - paragraph [ref=e1143]: System prompt *
+                        - img [ref=e1144]
+                      - generic [ref=e1146]:
+                        - generic [ref=e1147]:
+                          - generic [ref=e1148]:
+                            - generic [ref=e1149]:
+                              - button "Edit mode" [ref=e1150] [cursor=pointer]: Edit
+                              - button "Preview mode" [ref=e1151] [cursor=pointer]: Preview
+                            - generic "Undo" [ref=e1152]:
+                              - button "Undo" [ref=e1353] [cursor=pointer]
+                            - generic "Redo" [ref=e1153]:
+                              - button "Redo" [disabled]
+                          - generic [ref=e1154]:
+                            - generic "Heading" [ref=e1155]:
+                              - button "Heading" [ref=e1156] [cursor=pointer]
+                            - generic "Bold" [ref=e1159]:
+                              - button "Bold" [ref=e1160] [cursor=pointer]
+                            - generic "Italic" [ref=e1163]:
+                              - button "Italic" [ref=e1164] [cursor=pointer]
+                            - generic "Code" [ref=e1167]:
+                              - button "Code" [ref=e1168] [cursor=pointer]
+                            - generic "Numbered List" [ref=e1172]:
+                              - button "Numbered List" [ref=e1173] [cursor=pointer]
+                            - generic "Bulleted List" [ref=e1176]:
+                              - button "Bulleted List" [ref=e1177] [cursor=pointer]
+                            - button "Toggle coverage" [ref=e1181] [cursor=pointer]:
+                              - img [ref=e1182]
+                              - text: Coverage
+                            - generic "Expand" [ref=e1187]:
+                              - button "Expand editor" [ref=e1188] [cursor=pointer]
+                        - textbox "System prompt *" [ref=e1194]:
+                          - paragraph [ref=e1195]: "You are Flaky Detective, an agentic software-testing assistant. Your job is to decide whether a failing or inconsistent AI-agent test run is a real regression or just non-deterministic flakiness, and to recommend the next action. You have one tool: analyzeRuns (the NovaFabric Flaky Detective /analyze endpoint). It compares two captured agent runs (a trusted baseline and the current run) by replaying and diffing them, and returns a structured verdict. How to work: 1. Identify the two runs to compare: a baseline_capsule (the known-good reference) and a current_capsule (the run under investigation). If the user gives demo aliases, pass them through unchanged (e.g. fixture:baseline, fixture:flaky, fixture:regression). 2. Call analyzeRuns with those two values. 3. Read the returned verdict (pass | flaky | regression), differing_step, confidence, and remediation. 4. Report a clear, short answer to the tester: - regression: \"Real regression at <differing_step>. Behavior changed vs baseline. This is a genuine failure - investigate before release.\" Include the remediation. - flaky: \"Flaky, not a regression. Only the model's wording varied at <differing_step>; tool results and outputs match baseline. Safe to re-run / not a code bug.\" Include the remediation (e.g. pin seed, assert on tool outcomes). - pass: \"No behavioral difference vs baseline. Treat the original failure as noise.\" 5. Always state the confidence and name the differing_step. Never guess a verdict without calling the tool. If the tool errors, say so plainly and ask for valid capsule references. Tone: Concise, decisive, engineer-to-engineer. You are a triage assistant: your value is telling the tester whether to spend time on a failure or ignore it. Do not invent details not in the tool output. Keep a human in the loop for the final ship/no-ship decision."
+                    - generic [ref=e1196]:
+                      - generic [ref=e1198]:
+                        - paragraph [ref=e1199]: User prompt *
+                        - img [ref=e1200]
+                      - generic [ref=e1202]:
+                        - generic [ref=e1203]:
+                          - generic [ref=e1204]:
+                            - generic [ref=e1205]:
+                              - button "Edit mode" [ref=e1206] [cursor=pointer]: Edit
+                              - button "Preview mode" [ref=e1207] [cursor=pointer]: Preview
+                            - generic "Undo" [ref=e1208]:
+                              - button "Undo" [ref=e1372] [cursor=pointer]
+                            - generic "Redo" [ref=e1209]:
+                              - button "Redo" [disabled]
+                          - generic [ref=e1210]:
+                            - generic "Heading" [ref=e1211]:
+                              - button "Heading" [ref=e1212] [cursor=pointer]
+                            - generic "Bold" [ref=e1215]:
+                              - button "Bold" [ref=e1216] [cursor=pointer]
+                            - generic "Italic" [ref=e1219]:
+                              - button "Italic" [ref=e1220] [cursor=pointer]
+                            - generic "Code" [ref=e1223]:
+                              - button "Code" [ref=e1224] [cursor=pointer]
+                            - generic "Numbered List" [ref=e1228]:
+                              - button "Numbered List" [ref=e1229] [cursor=pointer]
+                            - generic "Bulleted List" [ref=e1232]:
+                              - button "Bulleted List" [ref=e1233] [cursor=pointer]
+                            - button "Toggle coverage" [ref=e1237] [cursor=pointer]:
+                              - img [ref=e1238]
+                              - text: Coverage
+                            - generic "Expand" [ref=e1243]:
+                              - button "Expand editor" [ref=e1244] [cursor=pointer]
+                        - textbox "User prompt *" [ref=e1250]:
+                          - paragraph [ref=e1251]: Compare fixture:baseline against fixture:flaky.
+                    - button "Edit I/O Schema" [ref=e1252] [cursor=pointer]
+                  - generic [ref=e1253]:
+                    - generic [ref=e1254]:
+                      - button "Model settings" [expanded] [ref=e1255] [cursor=pointer]:
+                        - generic [ref=e1256]: Model settings
+                        - img [ref=e1258]
+                      - region [ref=e1263]:
+                        - generic [ref=e1267]:
+                          - generic [ref=e1268]:
+                            - paragraph [ref=e1269]: Temperature
+                            - generic [ref=e1270]:
+                              - slider "Temperature slider" [ref=e1274]: "0"
+                              - generic [ref=e1275]
+                          - generic [ref=e1278]:
+                            - paragraph [ref=e1279]: Max. tokens per response
+                            - generic [ref=e1280]:
+                              - slider "Max tokens slider" [ref=e1285]: "65535"
+                              - generic [ref=e1286]
+                          - generic [ref=e1289]:
+                            - paragraph [ref=e1290]: Max. iterations
+                            - generic [ref=e1291]:
+                              - slider "Max iterations slider" [ref=e1296]: "25"
+                              - generic [ref=e1297]
+                              - text: "0"
+                    - generic [ref=e1300]:
+                      - button "Guardrails Learn how we evaluate and apply guardrails in order.. Press Enter or Space to view description." [expanded] [ref=e1301] [cursor=pointer]:
+                        - generic [ref=e1303]:
+                          - paragraph [ref=e1304]: Guardrails
+                          - button "Learn how we evaluate and apply guardrails in order.. Press Enter or Space to view description." [ref=e1305]:
+                            - img [ref=e1306]
+                        - img [ref=e1309]
+                      - region [ref=e1314]:
+                        - generic [ref=e1317]:
+                          - status [ref=e1318]
+                          - paragraph [ref=e1320]:
+                            - text: You are not entitled to use guardrails. Click
+                            - link "here" [ref=e1321] [cursor=pointer]:
+                              - /url: https://docs.uipath.com/agents/automation-cloud/latest/user-guide/out-of-the-box-guardrails
+                            - text: to learn more.
+                    - generic [ref=e1322]:
+                      - paragraph [ref=e1323]: Available units
+                      - paragraph [ref=e1325]: 250/250
+            - separator [ref=e913]
+            - generic [ref=e914]:
+              - button "Close properties panel" [ref=e1326] [cursor=pointer]:
+                - img [ref=e916]:
+                  - img [ref=e917]
+              - button "Open run output" [ref=e921] [cursor=pointer]:
+                - img [ref=e922]:
+                  - img [ref=e923]
+              - button "Open watches panel" [ref=e929] [cursor=pointer]:
+                - img [ref=e930]:
+                  - img [ref=e931]
+              - button "Open Autopilot" [ref=e935] [cursor=pointer]:
+                - img [ref=e936]:
+                  - img [ref=e937]
+              - button "Open health score" [ref=e941] [cursor=pointer]:
+                - img [ref=e942]:
+                  - img [ref=e943]
+    - img [ref=e348]:
+      - img [ref=e349]
+  - generic [ref=e350]: No data to display yet.

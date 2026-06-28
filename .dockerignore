@@ -1,0 +1,19 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# STRICT ALLOW-LIST: ignore EVERYTHING, then re-include only what the image needs.
+# This guarantees that NONE of the following can ever enter the build context / image:
+#   - AI / editor tooling and local config (memory, plans, skills, notes)
+#   - Internal docs:     docs/ (BUILD-PLAN, HACKATHON, DEVPOST drafts, design notes), _STATUS.md
+#   - Secrets/env:       .env, .env.*, *.key, *.pem, credentials, secrets
+#   - Plans / notes:     TODO.md, NOTES.md, any *.md
+#   - Test/dev cruft:    tests/, demo/, screenshots/, *.png, .venv/, .git/
+# ─────────────────────────────────────────────────────────────────────────────
+*
+
+# Re-include ONLY the files required to build and run the API:
+!pyproject.toml
+!src
+!deploy
+
+# Re-exclude junk that may live inside the allowed dirs:
+**/__pycache__
+**/*.pyc
