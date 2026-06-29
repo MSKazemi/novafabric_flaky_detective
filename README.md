@@ -113,30 +113,68 @@ single run; Flaky Detective triages why two runs diverged.
 ## NovaFabric is a dependency, not a copy
 
 This repo contains only original integration code. [NovaFabric](https://pypi.org/project/novafabric/)
-(Apache-2.0) is the capture/replay/diff engine, installed from PyPI.
+(Apache-2.0) is the capture/replay/diff engine, installed from PyPI (`novafabric>=0.58`) — see
+[Setup instructions](#setup-instructions-for-judging) below.
+
+## Setup instructions (for judging)
+
+There are three ways to run the solution, from fastest to most complete. **Option A needs no
+install** and exercises the full deterministic engine; Options B–C reproduce the service and the
+UiPath agent locally.
+
+### Option A — try the live API (zero install)
+
+The service is deployed and open (no auth). Built-in demo fixtures mean **no LLM/API keys** are
+needed.
 
 ```bash
-python3.12 -m venv .venv && . .venv/bin/activate
-pip install -e .          # pulls in novafabric>=0.58 from PyPI automatically
-```
+# Wake the free-tier instance first (cold start can take ~50s), then check health:
+curl https://flaky-detective.onrender.com/health            # -> {"status":"ok"}
+curl https://flaky-detective.onrender.com/fixtures          # -> lists baseline / flaky / regression
 
-## Run the API
-
-```bash
-# from source
-uvicorn flaky_detective.api:app --port 8000
-# or the published container
-docker run --rm -p 8000:8000 kazemi/flaky-detective:latest
-
-# try it (built-in demo fixtures, no LLM keys needed):
-curl localhost:8000/analyze -H 'content-type: application/json' \
+# Classify two captured runs:
+curl https://flaky-detective.onrender.com/analyze -H 'content-type: application/json' \
   -d '{"baseline_capsule":"fixture:baseline","current_capsule":"fixture:flaky"}'       # -> flaky
-curl localhost:8000/analyze -H 'content-type: application/json' \
+curl https://flaky-detective.onrender.com/analyze -H 'content-type: application/json' \
   -d '{"baseline_capsule":"fixture:baseline","current_capsule":"fixture:regression"}'  # -> regression
 ```
 
+### Option B — run the service locally
+
+```bash
+python3.12 -m venv .venv && . .venv/bin/activate
+pip install -e .                       # pulls novafabric>=0.58 from PyPI automatically
+uvicorn flaky_detective.api:app --port 8000
+# or the published container:
+docker run --rm -p 8000:8000 kazemi/flaky-detective:latest
+
+# same three fixtures, now against localhost:
+curl localhost:8000/analyze -H 'content-type: application/json' \
+  -d '{"baseline_capsule":"fixture:baseline","current_capsule":"fixture:flaky"}'       # -> flaky
+
+# run the test suite (10 tests, no keys needed):
+pip install -e '.[dev]' && pytest -q
+```
+
 Image: [`kazemi/flaky-detective`](https://hub.docker.com/r/kazemi/flaky-detective) (Docker Hub).
-API contract: `deploy/openapi-3.0.json`.
+API contract: `deploy/openapi-3.0.json` (OpenAPI 3.0, used to build the UiPath connector).
+
+### Option C — reproduce the UiPath agent
+
+The agent is already built, published, and deployed in UiPath Automation Cloud (org
+`novafabricagenthack`). To rebuild it against your own org, follow the step-by-step runbook
+**[`deploy/UIPATH-RUNBOOK.md`](deploy/UIPATH-RUNBOOK.md)**, in short:
+
+1. **Integration Service → Build a connector → Import OpenAPI** → upload `deploy/openapi-3.0.json`
+   (base URL = your API URL, auth = none). Publish it and create a connection.
+2. **Agent Builder → New agent** → paste the system prompt from
+   [`deploy/agent-system-prompt.md`](deploy/agent-system-prompt.md), pick a model (temp 0).
+3. **Add tool** → the connector's **analyzeRuns** (`POST /analyze`) operation; expose inputs
+   `baseline_capsule`, `current_capsule`.
+4. **Test panel** — prompt *"Compare fixture:baseline against fixture:flaky"* → the agent calls the
+   tool and answers **flaky**; `…against fixture:regression` → **regression**;
+   `…against fixture:baseline` → **pass**.
+5. **Publish** the agent for a stable run surface.
 
 ## UiPath components used
 
@@ -154,8 +192,11 @@ orchestration and governance layer.
 
 ## Status
 
-Early build for UiPath AgentHack (deadline 2026-06-30). See `_STATUS.md` (local) for the live
-continue-point and `docs/BUILD-PLAN.md` for the full plan.
+Built for **UiPath AgentHack 2026** (Category 2 — Agentic Testing). The service is deployed and
+live, and the UiPath Agent Builder agent is built, published, and deployed in Automation Cloud
+(org `novafabricagenthack`) — all three verdicts (`pass` / `flaky` / `regression`) proven
+end-to-end through the connector. UiPath reproduction steps are in
+[`deploy/UIPATH-RUNBOOK.md`](deploy/UIPATH-RUNBOOK.md).
 
 ## License
 
