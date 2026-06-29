@@ -1,12 +1,16 @@
 # NovaFabric Flaky Detective
 
+## Project description
+
 An agentic software-testing assistant for the **UiPath platform** that tells you whether a
 failing AI-agent test run is a **real regression** or just **non-deterministic flakiness** —
 and pinpoints the step that changed.
 
-AI agents are non-deterministic: the same input can produce different runs. That makes test
-failures ambiguous — is the code broken, or did the LLM just behave differently this time?
-Flaky Detective answers that one question well.
+**The problem it solves:** AI agents are non-deterministic — the same input can produce different
+runs. That makes a failing agent test ambiguous: is the code broken, or did the LLM just behave
+differently this time? Teams end up ignoring failing tests and real regressions ship. Flaky
+Detective answers that one question well — given a captured baseline run and the current run, it
+classifies the difference as `pass` / `flaky` / `regression` and names the differing step.
 
 ## How it works
 
