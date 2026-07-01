@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using these metadata."
+title: "NovaFabric Flaky Detective"
+abstract: >-
+  An open-source agentic software-testing assistant for the UiPath platform that
+  classifies a failing AI-agent test run as pass, flaky, or regression and pinpoints
+  the differing step, by replaying and diffing a captured baseline run against the
+  current run via NovaFabric.
+type: software
+authors:
+  - family-names: "Seyedkazemi Ardebili"
+    given-names: "Mohsen"
+    email: "mohsen.seyedkazemi@gmail.com"
+repository-code: "https://github.com/MSKazemi/novafabric_flaky_detective"
+url: "https://github.com/MSKazemi/novafabric_flaky_detective"
+license: MIT
+keywords:
+  - flaky-tests
+  - regression-testing
+  - ai-agents
+  - agentic-ai
+  - uipath
+  - testing
+  - llm
+  - python

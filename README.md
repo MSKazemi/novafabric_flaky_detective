@@ -1,5 +1,15 @@
 # NovaFabric Flaky Detective
 
+> **Flaky test detection and regression triage for AI agents** — given a captured baseline run and the current run of an AI-agent test on the UiPath platform, NovaFabric Flaky Detective classifies the difference as `pass` / `flaky` / `regression` and names the step that changed.
+
+### What is NovaFabric Flaky Detective?
+
+NovaFabric Flaky Detective is an open-source agentic software-testing assistant for the UiPath platform.
+It helps QA and automation engineers tell whether a failing AI-agent test run is a real regression or just non-deterministic flakiness.
+Use it when an AI-agent test fails intermittently and you need to decide whether to ship or investigate.
+It works by replaying a captured baseline run and diffing it against the current run with [NovaFabric](https://github.com/novafabric/novafabric), then classifying the difference and pinpointing the differing step through an `/analyze` API.
+It is different from UiPath Agent Evaluations because it compares two actual runs (baseline vs current) rather than scoring one run against an expected output, and it is not intended as a general-purpose test runner or a replacement for your existing test suite.
+
 ## Project description
 
 An agentic software-testing assistant for the **UiPath platform** that tells you whether a
@@ -201,6 +211,69 @@ live, and the UiPath Agent Builder agent is built, published, and deployed in Au
 (org `novafabricagenthack`) — all three verdicts (`pass` / `flaky` / `regression`) proven
 end-to-end through the connector. UiPath reproduction steps are in
 [`deploy/UIPATH-RUNBOOK.md`](deploy/UIPATH-RUNBOOK.md).
+
+## Use cases
+
+- **Triage a flaky AI-agent test** — an agent test fails on CI but passes on re-run; feed the baseline and the failing run to `/analyze` to learn whether the difference is pure LLM wording (flaky) or a genuine behavioral change (regression).
+- **Catch real regressions in AI agents** — detect when a tool result, final output, model request, or environment changed between two runs, and get the differing step named so you know where to look.
+- **Stop ignoring failing agent tests** — replace "just re-run it" with a deterministic verdict, so real regressions do not ship because the suite was assumed to be noisy.
+- **Give a UiPath Agent Builder agent a testing tool** — expose `/analyze` as an Integration Service connector so a low-code agent can answer "is this a regression?" in plain English.
+- **Deterministic demos and CI checks** — the built-in `fixture:baseline` / `fixture:flaky` / `fixture:regression` capsules run with no LLM or API keys.
+
+## Alternatives and comparison
+
+Flaky Detective answers one narrow question — *flaky vs regression between two AI-agent runs* — and is honest about where other tools fit better:
+
+- **UiPath [Agent Evaluations](https://docs.uipath.com/agents/automation-cloud/latest/user-guide/agent-evaluations)** score a single run against an expected output or trajectory. Use them to gate whether one run met an expectation. Flaky Detective is complementary: it triages why *two* runs diverged. (See "Why not just use UiPath's built-in agent evaluations?" above.)
+- **General flaky-test tools** (e.g. pytest reruns, `pytest-flakefinder`, CI retry plugins) detect flakiness by re-running and observing pass/fail rates. They do not diff *what* differed between runs and do not distinguish LLM non-determinism from a structural change. Flaky Detective diffs the captured runs and names the differing step.
+- **LLM evaluation / tracing platforms** (e.g. general eval or observability suites) score or record agent behavior. Flaky Detective is not an eval framework or a tracing backend; it consumes NovaFabric capsules and returns a single classification.
+- **[NovaFabric](https://github.com/novafabric/novafabric)** itself is the capture/replay/diff engine (Apache-2.0). Flaky Detective depends on it and adds the pass/flaky/regression classification and the UiPath integration on top — it does not reimplement the engine.
+
+## Limitations and when NOT to use
+
+- **You need a captured baseline.** Classification compares a baseline capsule against the current run; without a baseline capsule there is nothing to diff.
+- **It is a deterministic heuristic, not a learned model.** The verdict is a rule over NovaFabric's diff sections (model response / tool result / final output / request / environment); confidence values are fixed, not calibrated probabilities.
+- **Scope is AI-agent runs captured as NovaFabric capsules.** It is not a general-purpose test runner, assertion library, or CI system.
+- **It answers one question.** It classifies flaky vs regression vs pass and names the differing step — it does not fix the regression or generate tests.
+- **The public demo is a free-tier instance.** The hosted API at `flaky-detective.onrender.com` can cold-start (~50s) and carries no auth; run it locally or in your own environment for real workloads.
+
+## FAQ
+
+### What is NovaFabric Flaky Detective?
+
+An open-source agentic software-testing assistant for the UiPath platform. Given a baseline AI-agent test run and the current run, it classifies the difference as `pass` / `flaky` / `regression` and names the step that changed, using NovaFabric to replay and diff the two runs.
+
+### What is the difference between flaky and regression for AI agents?
+
+**Flaky** means the *only* difference is the model's wording — the tool results and the final output are identical, so the agent produced the same effect and just phrased it differently (pure LLM non-determinism, safe to re-run). **Regression** means something structural changed — a tool result, the final output, the model request, or the environment — so the agent genuinely behaved differently and should be investigated. A structural change always wins over a wording change.
+
+### How does it work with UiPath?
+
+A UiPath Agent Builder agent is the orchestration and governance layer. It calls this project's `/analyze` API through a custom Integration Service connector (built from `deploy/openapi-3.0.json`), interprets the returned verdict, keeps a human in the loop, and can optionally log the result to Test Manager. The verdict itself is computed deterministically by the coded service plus NovaFabric — the agent narrates it, it never guesses it.
+
+### Do I need LLM or API keys to try it?
+
+No. The built-in `fixture:baseline` / `fixture:flaky` / `fixture:regression` capsules are generated in-process, so both the live API and the local service produce real NovaFabric diff verdicts with no keys.
+
+### What does a verdict look like?
+
+A call to `POST /analyze` with `{"baseline_capsule":"fixture:baseline","current_capsule":"fixture:flaky"}` returns a structured JSON verdict (representative output):
+
+```json
+{
+  "verdict": "flaky",
+  "confidence": 0.8,
+  "differing_step": "model call (span ...)",
+  "remediation": "Only the model's response text varied; request, tool results, outputs, and environment are identical. This is non-deterministic flakiness. Pin temperature/seed for the test, or assert on tool outcomes rather than raw model text.",
+  "signal": { "sections": { "model_calls": { "changed": true }, "tool_calls": { "changed": false }, "outputs": { "changes": [] } } }
+}
+```
+
+## Citation
+
+If you reference this project, please cite it using the metadata in [`CITATION.cff`](CITATION.cff):
+
+> Seyedkazemi Ardebili, Mohsen. *NovaFabric Flaky Detective.* https://github.com/MSKazemi/novafabric_flaky_detective
 
 ## License
 

@@ -1,0 +1,38 @@
+# NovaFabric Flaky Detective
+
+> NovaFabric Flaky Detective is an open-source agentic software-testing assistant for the UiPath platform. It helps QA and automation engineers tell whether a failing AI-agent test run is a real regression or just non-deterministic flakiness.
+
+NovaFabric Flaky Detective classifies the difference between two AI-agent test runs as `pass`, `flaky`, or `regression` and names the differing step.
+It works by replaying a captured baseline run and diffing it against the current run with NovaFabric, exposed through an `/analyze` HTTP API.
+It is different from UiPath Agent Evaluations because it compares two actual runs (baseline vs current) instead of scoring one run against an expected output.
+It is not a general-purpose test runner, an assertion library, or a replacement for an existing test suite.
+License: MIT.
+
+## Main links
+- GitHub: https://github.com/MSKazemi/novafabric_flaky_detective
+- README: https://github.com/MSKazemi/novafabric_flaky_detective/blob/main/README.md
+- License (MIT): https://github.com/MSKazemi/novafabric_flaky_detective/blob/main/LICENSE
+- Citation metadata: https://github.com/MSKazemi/novafabric_flaky_detective/blob/main/CITATION.cff
+- OpenAPI contract: https://github.com/MSKazemi/novafabric_flaky_detective/blob/main/deploy/openapi-3.0.json
+- UiPath runbook: https://github.com/MSKazemi/novafabric_flaky_detective/blob/main/deploy/UIPATH-RUNBOOK.md
+- NovaFabric engine (dependency, Apache-2.0): https://github.com/novafabric/novafabric
+- NovaFabric on PyPI: https://pypi.org/project/novafabric/
+- Docker image: https://hub.docker.com/r/kazemi/flaky-detective
+
+## Summary
+NovaFabric Flaky Detective answers one question well: given a captured baseline run and the current run of an AI-agent test, is a failure a real regression or just LLM non-determinism?
+Flaky means only the model's wording changed while tool results and final output are identical (safe to re-run).
+Regression means a tool result, final output, model request, or environment changed (real behavioral change to investigate).
+A UiPath Agent Builder agent orchestrates and governs; this project is the deterministic coded service (FastAPI) that wraps NovaFabric's capture/replay/diff engine.
+Use it for: triaging flaky AI-agent tests, catching real agent regressions, and giving a UiPath agent a testing tool.
+Do not use it for: general test running, single-run scoring (use UiPath Agent Evaluations), or as an LLM evaluation/tracing platform.
+
+## Key facts
+- Category: agentic software-testing assistant / API service
+- Language: Python (>=3.12), FastAPI
+- Core dependency: NovaFabric (capture/replay/diff engine, Apache-2.0, novafabric>=0.58 on PyPI)
+- Platform: UiPath (Agent Builder, Integration Service, optional Test Manager)
+- Install: `pip install -e .` then `uvicorn flaky_detective.api:app --port 8000`
+- Try (no keys): `curl https://flaky-detective.onrender.com/analyze -H 'content-type: application/json' -d '{"baseline_capsule":"fixture:baseline","current_capsule":"fixture:flaky"}'`
+- Verdicts: pass / flaky / regression, each with a confidence and a named differing step
+- License: MIT
